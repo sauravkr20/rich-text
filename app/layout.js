@@ -1,6 +1,6 @@
 "use client";
 
-import { AuthContextProvider, UserAuth } from "./context/AuthContext";
+import { AuthContextProvider } from "./context/AuthContext";
 
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -11,8 +11,6 @@ import Header from "./components/Header";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
-	const { user } = UserAuth() || {};
-
 	return (
 		<html lang="en">
 			<body className={inter.className}>
@@ -23,14 +21,8 @@ export default function RootLayout({ children }) {
 					/>
 				</Head>
 				<AuthContextProvider>
-					{!user ? (
-						<Login />
-					) : (
-						<div>
-							<Header />
-							{children}
-						</div>
-					)}
+					
+					{children}
 				</AuthContextProvider>
 			</body>
 		</html>
